@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/Environment/Light/background.png" type="Texture" id=1]
+[ext_resource path="res://src/Environment/Light/light.png" type="Texture" id=2]
+[ext_resource path="res://src/Objects/Light.tres" type="Texture" id=3]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.898039, 0.6, 0.176471, 0.72549 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -7.15256e-07, -0.499999 )
+scale = Vector2( 0.171875, 0.164063 )
+texture = ExtResource( 1 )
+
+[node name="Light2D" type="Light2D" parent="."]
+scale = Vector2( 0.0210571, 0.0210571 )
+texture = ExtResource( 2 )
+shadow_enabled = true
+shadow_filter = 5
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 0, 2 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )

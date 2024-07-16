@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/UI/Dialogbox/dialogbox.gd" type="Script" id=1]
+[ext_resource path="res://src/UI/Dialogbox/dialogbox2.png" type="Texture" id=2]
+[ext_resource path="res://src/UI/themes/text_font.tres" type="Theme" id=3]
+[ext_resource path="res://src/UI/themes/Title_font.tres" type="Theme" id=4]
+
+[node name="Dialog" type="Control"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+dialogpath = "res://src/UI/Dialogbox/dialogs.json"
+
+[node name="fondo" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -324.0
+margin_top = -206.0
+margin_right = 324.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 1
+
+[node name="Nombre" type="RichTextLabel" parent="fondo"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -96.952
+margin_top = 43.0
+margin_right = 96.952
+margin_bottom = 88.184
+theme = ExtResource( 4 )
+bbcode_enabled = true
+text = "Texto de prueba"
+
+[node name="texto" type="RichTextLabel" parent="fondo"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 90.0
+margin_top = 64.0
+margin_right = -64.0
+margin_bottom = -40.0
+theme = ExtResource( 3 )
+bbcode_enabled = true
+text = "texto de prueba.
+texto largo largo largo
+y aun mas largo
+"
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="text_finished" from="." to="." method="_on_Dialog_text_finished"]

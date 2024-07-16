@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/UI/Heart bar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/UI/XP/expCounter.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/UI/buff_menu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/UI/Pause/Pause Menu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/UI/Interface.gd" type="Script" id=5]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Interface/Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Interface/Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Interface")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "delete_fade_in"
+} ]
+}
+
+[node name="interface" type="CanvasLayer"]
+
+[node name="Interface" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+
+[node name="HBoxContainer" parent="Interface" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 24.0
+margin_top = 10.0
+margin_right = 196.0
+margin_bottom = 58.0
+
+[node name="expCounter" parent="Interface" instance=ExtResource( 2 )]
+margin_left = -175.0
+margin_top = 12.0
+margin_bottom = 59.0
+
+[node name="TextureRect" parent="Interface/expCounter" index="0"]
+margin_left = -71.0
+margin_top = -31.0
+margin_right = -9.0
+margin_bottom = 31.0
+expand = true
+
+[node name="Label" parent="Interface/expCounter" index="1"]
+margin_left = 33.0
+margin_top = -16.0
+margin_right = 93.0
+margin_bottom = 16.0
+
+[node name="buff_menu" parent="Interface" instance=ExtResource( 3 )]
+
+[node name="ColorRect" parent="Interface" instance=ExtResource( 4 )]
+
+[node name="Fade" type="ColorRect" parent="Interface"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Interface"]
+root_node = NodePath("../..")
+autoplay = "fade_in"
+anims/RESET = SubResource( 1 )
+anims/fade_in = SubResource( 2 )
+
+[editable path="Interface/expCounter"]
+[editable path="Interface/ColorRect"]

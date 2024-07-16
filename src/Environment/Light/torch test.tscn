@@ -1,0 +1,105 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/Environment/Light/Flame.png" type="Texture" id=1]
+[ext_resource path="res://src/Environment/Light/light (1).png" type="Texture" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.226519, 0.867403, 0.994475, 1 )
+colors = PoolColorArray( 0.152941, 0.12549, 0.0352941, 0, 0.917969, 0.756299, 0.204391, 1, 0.960938, 0.14085, 0.0788269, 1, 0.257813, 0.160831, 0.150055, 1, 0.996078, 0.898039, 0.890196, 0 )
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.929412, 0.556863, 0.164706, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Light2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "hue"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Light2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.5, 4.9 ),
+"transitions": PoolRealArray( 1.86607, 0.659754, 1.51572 ),
+"update": 0,
+"values": [ 1.0, 0.8, 0.999535 ]
+}
+
+[node name="Lights" type="Node2D"]
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 2 )
+texture_scale = 0.7
+color = Color( 0.929412, 0.556863, 0.164706, 1 )
+shadow_enabled = true
+shadow_gradient_length = 1.0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+pause_mode = 2
+material = SubResource( 1 )
+amount = 16
+lifetime_randomness = 0.3
+local_coords = false
+texture = ExtResource( 1 )
+direction = Vector2( 0, -1 )
+spread = 1.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 12.0
+initial_velocity_random = 0.4
+angular_velocity = 100.0
+angular_velocity_random = 1.0
+linear_accel = -9.64
+angle = 720.0
+scale_amount = 0.01
+scale_amount_random = 0.01
+color_ramp = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "hue"
+anims/RESET = SubResource( 3 )
+anims/hue = SubResource( 4 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+process_parent = true
+physics_process_parent = true

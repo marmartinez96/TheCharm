@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/Objects/Sword.png" type="Texture" id=1]
+[ext_resource path="res://src/Objects/shield.png" type="Texture" id=2]
+[ext_resource path="res://src/Objects/heart.png" type="Texture" id=3]
+[ext_resource path="res://src/UI/buff_menu.gd" type="Script" id=4]
+[ext_resource path="res://src/UI/heart.gd" type="Script" id=5]
+[ext_resource path="res://src/UI/shield.gd" type="Script" id=6]
+[ext_resource path="res://src/UI/sword.gd" type="Script" id=7]
+
+[node name="buff_menu" type="ColorRect"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.329412 )
+script = ExtResource( 4 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -113.0
+margin_top = -46.0
+margin_right = 113.0
+margin_bottom = 46.0
+
+[node name="heart" type="Button" parent="HBoxContainer"]
+margin_right = 72.0
+margin_bottom = 92.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+icon = ExtResource( 3 )
+expand_icon = true
+script = ExtResource( 5 )
+
+[node name="sword" type="Button" parent="HBoxContainer"]
+margin_left = 76.0
+margin_right = 149.0
+margin_bottom = 92.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+icon = ExtResource( 1 )
+expand_icon = true
+script = ExtResource( 7 )
+
+[node name="shield" type="Button" parent="HBoxContainer"]
+margin_left = 153.0
+margin_right = 226.0
+margin_bottom = 92.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+icon = ExtResource( 2 )
+expand_icon = true
+script = ExtResource( 6 )
+
+[connection signal="button_up" from="HBoxContainer/heart" to="HBoxContainer/heart" method="_on_heart_button_up"]
+[connection signal="button_up" from="HBoxContainer/sword" to="HBoxContainer/sword" method="_on_sword_button_up"]
+[connection signal="button_up" from="HBoxContainer/shield" to="HBoxContainer/shield" method="_on_shield_button_up"]
